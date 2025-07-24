@@ -1,0 +1,80 @@
+openapi: 3.0.1
+info:
+  title: Airline Ticket Booking API
+  version: 1.0.0
+servers:
+  - url: https://api.example.com
+paths:
+  /bookings:
+    get:
+      summary: Get all bookings
+      responses:
+        '200':
+          description: List of bookings
+    post:
+      summary: Create a new booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        '200':
+          description: Booking created
+  /bookings/{id}:
+    get:
+      summary: Get booking by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Booking found
+    put:
+      summary: Update booking
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        '200':
+          description: Booking updated
+    delete:
+      summary: Delete booking
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Booking deleted
+components:
+  schemas:
+    Booking:
+      type: object
+      properties:
+        id:
+          type: integer
+        passengerName:
+          type: string
+        flightNumber:
+          type: string
+        departureDate:
+          type: string
+          format: date
+        seatNumber:
+          type: string
