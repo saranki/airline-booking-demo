@@ -10,7 +10,7 @@ paths:
       summary: Get all bookings
       responses:
         '200':
-          description: List of bookings
+          description: List of ticket bookings
     post:
       summary: Create a new booking
       requestBody:
